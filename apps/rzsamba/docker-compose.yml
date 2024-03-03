@@ -1,0 +1,30 @@
+version: '3.9'
+
+services:
+  rzsamba:
+    container_name: rzsamba
+    image: crazymax/samba
+    environment:
+      - RZSAMBA_ADMIN_USER=${RZSAMBA_ADMIN_USER}
+      - RZSAMBA_ADMIN_PASSWORD=${RZSAMBA_ADMIN_PASSWORD}
+      - RZSAMBA_BROWSER_REDIRECT_URL=${APP_PROTOCOL:-http}://${APP_DOMAIN}
+      - RZSAMBA_DOMAIN=Host(`${APP_DOMAIN}`)
+      - RZSAMBA_TIMEZONE="TZ=Europe/Paris"
+      - RZSAMBA_LOG_LEVEL=${RZSAMBA_LOG_LEVEL} #"SAMBA_LOG_LEVEL=0"
+    ports:
+      - 139:139
+      - 445:445
+      - ${APP_PORT}:901
+    restart: unless-stopped
+    volumes:
+      - ${APP_DATA_DIR}/data/rzsamba/data:/data
+      - ${APP_DATA_DIR}/data/rzsamba/appdata/shares/public:/home/public
+    networks:
+      - tipi_main_network
+    #command: 'server --console-address :9001 /data'
+#    labels:
+#      # Console
+#      traefik.http.routers.minio-console.rule: Host(`${APP_DOMAIN}`)
+#      # API
+#      traefik.http.routers.minio.rule: Host(`${MINIO_API_URL}`)
+

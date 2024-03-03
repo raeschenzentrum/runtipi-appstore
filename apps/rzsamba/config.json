@@ -1,0 +1,46 @@
+{
+  "name": "RZ Samba",
+  "available": true,
+  "exposable": true,
+  "port": 901,
+  "id": "rzsamba",
+  "description": "SAMBA Filesharing.",
+  "tipi_version": 2,
+  "version": "RELEASE.2024-03-03T23-51-14Z",
+  "categories": ["development","networking"],
+  "short_desc": "Samba",
+  "author": "MinIO, Inc",
+  "source": "https://github.com/samba",
+  "website": "https://samba.org",
+  "form_fields": [
+    {
+      "type": "text",
+      "label": "Samba Admin Username",
+      "max": 50,
+      "min": 1,
+      "required": true,
+      "env_variable": "RZSAMBA_ADMIN_USER"
+    },
+    {
+      "type": "password",
+      "label": "RZSAMBA Admin Password",
+      "max": 50,
+      "min": 8,
+      "required": true,
+      "env_variable": "RZSAMBA_ADMIN_PASSWORD"
+    },
+    {
+      "type": "text",
+      "label": "RZSAMBA Timezone",
+      "required": false,
+      "env_variable": "RZSAMBA_TIMEZONE"
+    },
+    {
+      "type": "text",
+      "label": "RZSAMBA Loglevel",
+      "required": false,
+      "env_variable": "RZSAMBA_LOG_LEVEL"
+    }
+  ],
+  "supported_architectures": ["arm64", "amd64"]
+}
